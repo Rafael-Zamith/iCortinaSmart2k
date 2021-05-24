@@ -17,7 +17,7 @@ int last = 0;
 
 const int stepsPerRevolution = 200;  // change this to fit the number of steps per revolution
 // initialize the stepper library on D1,D2,D5,D6
-Stepper myStepper(stepsPerRevolution, 32, 25, 33, 26);
+Stepper myStepper(stepsPerRevolution, 5, 19, 17, 18);
 WiFiClient espClient;
 PubSubClient client(espClient);
 
@@ -101,10 +101,10 @@ void callback(char* topic, byte* payload, unsigned int length)
   }
   else if(p==0)
   {
-    digitalWrite (33,LOW);
-    digitalWrite (35,LOW);
-    digitalWrite (25,LOW);
-    digitalWrite (32,LOW); 
+    digitalWrite (5,LOW);
+    digitalWrite (19,LOW);
+    digitalWrite (18,LOW);
+    digitalWrite (17,LOW); 
     Serial.print("  off]" );
   }
   Serial.println();
@@ -125,7 +125,7 @@ void reconnect() {
     {
       Serial.println("connected");
      //once connected to MQTT broker, subscribe command if any
-      client.subscribe("cortina");
+      client.subscribe("cortina/rafa");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -155,7 +155,7 @@ void loop() {
 
   long now = millis();
   
-  if (now - lastMsg > 2000) {
+  if (now - lastMsg > 200000) {
     lastMsg = now;
     ++value;
     char dat[6];
@@ -163,10 +163,10 @@ void loop() {
    Serial.println(luz);
     char *msg = dtostrf(luz,5,2,dat);
     Serial.println(msg);
-    client.publish("luz", msg);
-    //if (digitalRead(13) == LOW){
-    //if (last == 1){client.publish("luz", "Aberto");}
-    //if (last == 1){client.publish("luz", "Fechado");}
-    //}
+    client.publish("cortina/rafa/luz", msg);
+    if (digitalRead(13) == LOW){
+      if (last == 1){client.publish("cortina/rafa", "Aberto");}
+      if (last == 1){client.publish("cortina/rafa", "Fechado");}
+    }
   }
 }
