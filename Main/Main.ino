@@ -78,9 +78,9 @@ void callback(char* topic, byte* payload, unsigned int length)
       Serial.print(stepperLoop);
       Serial.print(" ");
       delay(50);
-      last = 1;
+      
     }
-    
+    last = 1;
     Serial.print("]");
   }
   else if(p==4)
@@ -94,9 +94,9 @@ void callback(char* topic, byte* payload, unsigned int length)
       Serial.print(stepperLoop);
       Serial.print(" ");
       delay(50);
-      last = 2;
+      
     }
-    
+    last = 2;
     Serial.print("]");
   }
   else if(p==0)
@@ -125,7 +125,7 @@ void reconnect() {
     {
       Serial.println("connected");
      //once connected to MQTT broker, subscribe command if any
-      client.subscribe("cortina/rafa");
+      client.subscribe("cortina");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -155,18 +155,26 @@ void loop() {
 
   long now = millis();
   
-  if (now - lastMsg > 200000) {
+  if (now - lastMsg > 20000) {
     lastMsg = now;
     ++value;
     char dat[6];
     luz = analogRead(34);
-   Serial.println(luz);
-    char *msg = dtostrf(luz,5,2,dat);
-    Serial.println(msg);
-    client.publish("cortina/rafa/luz", msg);
-    if (digitalRead(13) == LOW){
-      if (last == 1){client.publish("cortina/rafa", "Aberto");}
-      if (last == 1){client.publish("cortina/rafa", "Fechado");}
+   int result = map(luz, 0, 4000, 0, 255);
+   char *msg = dtostrf(result, 6, 2, dat);
+   Serial.println(msg);
+   client.publish("luz", msg);
+   Serial.print(last);
+   if (digitalRead(13) == LOW)
+   {
+     if (last == 1)
+     {
+       client.publish("cortina", "Aberto");
+     }
+     if (last == 2)
+     {
+       client.publish("cortina", "Fechado");
+     }
     }
   }
 }
