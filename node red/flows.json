@@ -1,0 +1,538 @@
+[
+    {
+        "id": "e4a549e7.02ae08",
+        "type": "tab",
+        "label": "cortina projeto",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d832420a.7eea6",
+        "type": "mqtt in",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "topic": "luz",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "573ef463.6d4eac",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "bc574210.686ee"
+            ]
+        ]
+    },
+    {
+        "id": "bc574210.686ee",
+        "type": "switch",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "80",
+                "vt": "str"
+            },
+            {
+                "t": "lt",
+                "v": "80",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 230,
+        "y": 280,
+        "wires": [
+            [
+                "501cd43.4e1c02c"
+            ],
+            [
+                "681bd135.f5d4f"
+            ]
+        ]
+    },
+    {
+        "id": "501cd43.4e1c02c",
+        "type": "change",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$now('[H01]', '-0300')",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "56c9c20b.93669c"
+            ]
+        ]
+    },
+    {
+        "id": "56c9c20b.93669c",
+        "type": "switch",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "19",
+                "vt": "str"
+            },
+            {
+                "t": "lt",
+                "v": "5",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 530,
+        "y": 280,
+        "wires": [
+            [
+                "627731b.fe902d"
+            ],
+            [
+                "627731b.fe902d"
+            ]
+        ]
+    },
+    {
+        "id": "627731b.fe902d",
+        "type": "change",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "3",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 280,
+        "wires": [
+            [
+                "6c26b8bf.3d3ce8"
+            ]
+        ]
+    },
+    {
+        "id": "6c26b8bf.3d3ce8",
+        "type": "mqtt out",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "topic": "cortina",
+        "qos": "",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "573ef463.6d4eac",
+        "x": 830,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "681bd135.f5d4f",
+        "type": "change",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$now('[H01]', '-0300')",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 320,
+        "wires": [
+            [
+                "ecf1a308.00454"
+            ]
+        ]
+    },
+    {
+        "id": "ecf1a308.00454",
+        "type": "switch",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "5",
+                "vt": "str"
+            },
+            {
+                "t": "lt",
+                "v": "19",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 530,
+        "y": 320,
+        "wires": [
+            [
+                "91b8382b.125868"
+            ],
+            [
+                "91b8382b.125868"
+            ]
+        ]
+    },
+    {
+        "id": "91b8382b.125868",
+        "type": "change",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "4",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 320,
+        "wires": [
+            [
+                "54a1af1.023495"
+            ]
+        ]
+    },
+    {
+        "id": "54a1af1.023495",
+        "type": "mqtt out",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "topic": "cortina",
+        "qos": "",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "573ef463.6d4eac",
+        "x": 830,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "3c0c16bb.c88e4a",
+        "type": "ui_button",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "group": "b8771926.f23158",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "fechar",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "4",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 400,
+        "wires": [
+            [
+                "cf5a5f2d.1f335"
+            ]
+        ]
+    },
+    {
+        "id": "c4c2bf43.6d1d1",
+        "type": "ui_button",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "group": "b8771926.f23158",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "abrir",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "3",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 440,
+        "wires": [
+            [
+                "cf5a5f2d.1f335"
+            ]
+        ]
+    },
+    {
+        "id": "cf5a5f2d.1f335",
+        "type": "mqtt out",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "topic": "cortina",
+        "qos": "",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "573ef463.6d4eac",
+        "x": 270,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "b3d2b6c4.7d0218",
+        "type": "ui_text",
+        "z": "e4a549e7.02ae08",
+        "group": "b8771926.f23158",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "posição",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 820,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "819a4dfa.a39aa",
+        "type": "mqtt in",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "topic": "cortina",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "573ef463.6d4eac",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "x": 500,
+        "y": 460,
+        "wires": [
+            [
+                "2c7f36dd.62142a"
+            ]
+        ]
+    },
+    {
+        "id": "2c7f36dd.62142a",
+        "type": "switch",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Aberto",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "Fechado",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 630,
+        "y": 440,
+        "wires": [
+            [
+                "b3d2b6c4.7d0218"
+            ],
+            [
+                "b3d2b6c4.7d0218"
+            ]
+        ]
+    },
+    {
+        "id": "127c754d.c255eb",
+        "type": "ui_button",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "group": "b8771926.f23158",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "abaixar",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "2",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 480,
+        "wires": [
+            [
+                "cf5a5f2d.1f335"
+            ]
+        ]
+    },
+    {
+        "id": "ac090671.4a5438",
+        "type": "ui_button",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "group": "b8771926.f23158",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "levantar",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 520,
+        "wires": [
+            [
+                "cf5a5f2d.1f335"
+            ]
+        ]
+    },
+    {
+        "id": "b7398065.5d2c4",
+        "type": "ui_button",
+        "z": "e4a549e7.02ae08",
+        "name": "",
+        "group": "b8771926.f23158",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "acionamento manual",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 160,
+        "y": 560,
+        "wires": [
+            [
+                "cf5a5f2d.1f335"
+            ]
+        ]
+    },
+    {
+        "id": "573ef463.6d4eac",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "http://localhost",
+        "port": "1883",
+        "clientid": "HA Broker",
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "b8771926.f23158",
+        "type": "ui_group",
+        "name": "botões",
+        "tab": "218e1f3.e1bbce",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "218e1f3.e1bbce",
+        "type": "ui_tab",
+        "name": "Cortina",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
